@@ -27,6 +27,9 @@ namespace RogueElements
             this.TileStencil = tileStencil;
         }
 
+        /// <summary>
+        /// Filters for valid path tiles
+        /// </summary>
         public ITerrainStencil<T> TileStencil { get; set; }
 
         /// <summary>
