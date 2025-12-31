@@ -316,10 +316,13 @@ async function parseClassFile(filePath: string): Promise<ClassDoc[]> {
         for (let i = 0; i < baseList.childCount; i++) {
           const child = baseList.child(i);
           if (child && child.type !== ":" && child.type !== ",") {
-            const typeName = child.text.split(",")[0].trim();
+            // Use full type name including generic parameters
+            const typeName = child.text.trim();
             if (isFirst && !isInterface) {
               // First item could be base class or interface
-              if (typeName.startsWith("I") && typeName.length > 1 && typeName[1] === typeName[1].toUpperCase()) {
+              // Check if it's an interface (starts with I followed by uppercase)
+              const baseTypeName = typeName.replace(/<.*>/, ""); // Strip generics for interface check
+              if (baseTypeName.startsWith("I") && baseTypeName.length > 1 && baseTypeName[1] === baseTypeName[1].toUpperCase()) {
                 interfaces.push(typeName);
               } else {
                 baseClass = typeName;
@@ -367,12 +370,15 @@ async function parseClassFile(filePath: string): Promise<ClassDoc[]> {
       // Properties
       const propDecls = findNodesByType(declNode, "property_declaration");
       for (const prop of propDecls) {
-        let propPublic = false;
-        for (let i = 0; i < prop.childCount; i++) {
-          const child = prop.child(i);
-          if (child?.type === "modifier" && child.text === "public") {
-            propPublic = true;
-            break;
+        // Interface members are implicitly public - skip modifier check for interfaces
+        let propPublic = isInterface;
+        if (!propPublic) {
+          for (let i = 0; i < prop.childCount; i++) {
+            const child = prop.child(i);
+            if (child?.type === "modifier" && child.text === "public") {
+              propPublic = true;
+              break;
+            }
           }
         }
         if (!propPublic) continue;
@@ -392,12 +398,15 @@ async function parseClassFile(filePath: string): Promise<ClassDoc[]> {
       const methodDecls = findNodesByType(declNode, "method_declaration");
 
       for (const method of methodDecls) {
-        let methodPublic = false;
-        for (let i = 0; i < method.childCount; i++) {
-          const child = method.child(i);
-          if (child?.type === "modifier" && child.text === "public") {
-            methodPublic = true;
-            break;
+        // Interface members are implicitly public - skip modifier check for interfaces
+        let methodPublic = isInterface;
+        if (!methodPublic) {
+          for (let i = 0; i < method.childCount; i++) {
+            const child = method.child(i);
+            if (child?.type === "modifier" && child.text === "public") {
+              methodPublic = true;
+              break;
+            }
           }
         }
         if (!methodPublic) continue;
