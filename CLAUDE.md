@@ -118,6 +118,16 @@ public class MyStep : GenStep<ITiledGenContext>
 2. Add interfaces as needed (ITiledGenContext, IFloorPlanGenContext, etc.)
 3. See `RogueElements.Examples/Common/BaseMapGenContext.cs` for reference
 
+## Deep Dive Documentation
+
+For detailed architecture and code flow documentation, see `docs/claude/`:
+
+| Document | Purpose |
+|----------|---------|
+| [architecture.md](docs/claude/architecture.md) | Interface hierarchy, GenStep categories, data flow diagrams |
+| [flows.md](docs/claude/flows.md) | Traced code paths for key operations |
+| [patterns.md](docs/claude/patterns.md) | Step-by-step recipes for common modifications |
+
 ## Debug Support
 
 ```csharp
