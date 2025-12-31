@@ -2,6 +2,11 @@
 
 C# library for procedural roguelike map generation using a pipeline architecture.
 
+## Claude Code Rules
+
+- **Do not commit without explicit user consent** - Always ask before running `git commit`
+- **Do not push without explicit user consent** - Always ask before running `git push`
+
 ## Quick Start
 
 ```bash
