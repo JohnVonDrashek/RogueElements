@@ -18,17 +18,29 @@ namespace RogueElements
         where TGenContext : class, IPlaceableGenContext<TSpawnable>, ITiledGenContext
         where TSpawnable : ISpawnable
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TerrainSpawnStep{TGenContext, TSpawnable}"/> class.
+        /// </summary>
         public TerrainSpawnStep()
             : base()
         {
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TerrainSpawnStep{TGenContext, TSpawnable}"/> class with the specified terrain type.
+        /// </summary>
+        /// <param name="terrain">The terrain type to spawn objects on.</param>
         public TerrainSpawnStep(ITile terrain)
             : base()
         {
             this.Terrain = terrain;
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TerrainSpawnStep{TGenContext, TSpawnable}"/> class with the specified terrain type and spawner.
+        /// </summary>
+        /// <param name="terrain">The terrain type to spawn objects on.</param>
+        /// <param name="spawn">The spawner that generates the list of items to place.</param>
         public TerrainSpawnStep(ITile terrain, IStepSpawner<TGenContext, TSpawnable> spawn)
             : base(spawn)
         {
@@ -36,10 +48,15 @@ namespace RogueElements
         }
 
         /// <summary>
-        /// The type of tile to spawn in.
+        /// Gets or sets the terrain type that tiles must match for spawn placement.
         /// </summary>
         public ITile Terrain { get; set; }
 
+        /// <summary>
+        /// Distributes spawns by placing each on a randomly selected tile matching the specified terrain.
+        /// </summary>
+        /// <param name="map">The generation context to place spawns in.</param>
+        /// <param name="spawns">The list of spawnable entities to distribute.</param>
         public override void DistributeSpawns(TGenContext map, List<TSpawnable> spawns)
         {
             List<Loc> freeTiles = new List<Loc>();
@@ -66,6 +83,7 @@ namespace RogueElements
             }
         }
 
+        /// <inheritdoc/>
         public override string ToString()
         {
             if (this.Spawn == null || this.Terrain == null)

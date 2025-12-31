@@ -19,19 +19,35 @@ namespace RogueElements
         where TGenContext : class, IFloorPlanGenContext, IPlaceableGenContext<TSpawnable>
         where TSpawnable : ISpawnable
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TerminalSpawnStep{TGenContext, TSpawnable}"/> class.
+        /// </summary>
         public TerminalSpawnStep()
             : base()
         {
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TerminalSpawnStep{TGenContext, TSpawnable}"/> class with the specified parameters.
+        /// </summary>
+        /// <param name="spawn">The spawner that generates the list of items to place.</param>
+        /// <param name="includeHalls">Whether to include halls as eligible spawn locations.</param>
         public TerminalSpawnStep(IStepSpawner<TGenContext, TSpawnable> spawn, bool includeHalls = false)
             : base(spawn)
         {
             this.IncludeHalls = includeHalls;
         }
 
+        /// <summary>
+        /// Gets or sets a value indicating whether halls are eligible for spawn.
+        /// </summary>
         public bool IncludeHalls { get; set; }
 
+        /// <summary>
+        /// Distributes spawns by prioritizing terminal (dead-end) rooms, then falling back to other rooms.
+        /// </summary>
+        /// <param name="map">The generation context to place spawns in.</param>
+        /// <param name="spawns">The list of spawnable entities to distribute.</param>
         public override void DistributeSpawns(TGenContext map, List<TSpawnable> spawns)
         {
             // random per room, not per-tile
