@@ -23,8 +23,8 @@ namespace RogueElements
     /// <summary>
     /// Randomly chooses an IStepSpawner from a spawner of spawners, then generates the objects from the chosen IStepSpawner.
     /// </summary>
-    /// <typeparam name="TGenContext"></typeparam>
-    /// <typeparam name="TSpawnable"></typeparam>
+    /// <typeparam name="TGenContext">The generation context type used to inform spawn generation.</typeparam>
+    /// <typeparam name="TSpawnable">The type of spawnable entity to generate.</typeparam>
     [Serializable]
     public class MultiStepSpawner<TGenContext, TSpawnable> : IStepSpawner<TGenContext, TSpawnable>, IMultiStepSpawner
         where TGenContext : IGenContext

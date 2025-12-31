@@ -23,8 +23,8 @@ namespace RogueElements
     /// <summary>
     /// Spawns items from the map's own spawn tables.
     /// </summary>
-    /// <typeparam name="TGenContext"></typeparam>
-    /// <typeparam name="TSpawnable"></typeparam>
+    /// <typeparam name="TGenContext">The generation context type, which must provide spawn tables.</typeparam>
+    /// <typeparam name="TSpawnable">The type of spawnable entity to generate.</typeparam>
     [Serializable]
     public class ContextSpawner<TGenContext, TSpawnable> : IStepSpawner<TGenContext, TSpawnable>, IContextSpawner
         where TGenContext : ISpawningGenContext<TSpawnable>

@@ -11,8 +11,8 @@ namespace RogueElements
     /// <summary>
     /// Spawns objects randomly on tiles of a specific terrain.
     /// </summary>
-    /// <typeparam name="TGenContext"></typeparam>
-    /// <typeparam name="TSpawnable"></typeparam>
+    /// <typeparam name="TGenContext">The generation context type, which must support placing spawnable entities and tile access.</typeparam>
+    /// <typeparam name="TSpawnable">The type of spawnable entity to place on the map.</typeparam>
     [Serializable]
     public class TerrainSpawnStep<TGenContext, TSpawnable> : BaseSpawnStep<TGenContext, TSpawnable>
         where TGenContext : class, IPlaceableGenContext<TSpawnable>, ITiledGenContext

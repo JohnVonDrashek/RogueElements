@@ -12,8 +12,8 @@ namespace RogueElements
     /// Spawns objects in randomly chosen rooms.
     /// Large rooms have the same probability as small rooms.
     /// </summary>
-    /// <typeparam name="TGenContext"></typeparam>
-    /// <typeparam name="TSpawnable"></typeparam>
+    /// <typeparam name="TGenContext">The generation context type, which must support floor plans and placing spawnable entities.</typeparam>
+    /// <typeparam name="TSpawnable">The type of spawnable entity to place on the map.</typeparam>
     [Serializable]
     public class RandomRoomSpawnStep<TGenContext, TSpawnable> : RoomSpawnStep<TGenContext, TSpawnable>
         where TGenContext : class, IFloorPlanGenContext, IPlaceableGenContext<TSpawnable>

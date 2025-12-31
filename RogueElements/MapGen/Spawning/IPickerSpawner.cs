@@ -23,8 +23,8 @@ namespace RogueElements
     /// <summary>
     /// Generates spawnables from a specifically defined IMultiRandPicker.
     /// </summary>
-    /// <typeparam name="TGenContext"></typeparam>
-    /// <typeparam name="TSpawnable"></typeparam>
+    /// <typeparam name="TGenContext">The generation context type used for randomization.</typeparam>
+    /// <typeparam name="TSpawnable">The type of spawnable entity to generate.</typeparam>
     [Serializable]
     public class PickerSpawner<TGenContext, TSpawnable> : IStepSpawner<TGenContext, TSpawnable>, IPickerSpawner
         where TGenContext : IGenContext

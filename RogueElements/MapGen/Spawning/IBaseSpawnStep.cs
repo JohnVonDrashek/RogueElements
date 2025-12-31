@@ -30,8 +30,8 @@ namespace RogueElements
     /// Spawns objects of type E to IPlaceableGenContext T.
     /// Child classes offer a different way to place the list of spawns provided by Spawn.
     /// </summary>
-    /// <typeparam name="TGenContext"></typeparam>
-    /// <typeparam name="TSpawnable"></typeparam>
+    /// <typeparam name="TGenContext">The generation context type, which must support placing spawnable entities.</typeparam>
+    /// <typeparam name="TSpawnable">The type of spawnable entity to place on the map.</typeparam>
     [Serializable]
     public abstract class BaseSpawnStep<TGenContext, TSpawnable> : GenStep<TGenContext>, IBaseSpawnStep
         where TGenContext : class, IPlaceableGenContext<TSpawnable>

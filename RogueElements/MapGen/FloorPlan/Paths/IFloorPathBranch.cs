@@ -462,12 +462,33 @@ namespace RogueElements
             return (tilesCovered, roomsAdded);
         }
 
+        /// <summary>
+        /// Represents an expansion operation for a branching floor path, containing the source room/hall,
+        /// the new room to add, and an optional connecting hall.
+        /// </summary>
         public struct ListPathBranchExpansion
         {
+            /// <summary>
+            /// The index of the room or hall to expand from.
+            /// </summary>
             public RoomHallIndex From;
+
+            /// <summary>
+            /// The optional intermediate hall connecting the source to the new room. May be null.
+            /// </summary>
             public IPermissiveRoomGen Hall;
+
+            /// <summary>
+            /// The new room to add to the floor plan.
+            /// </summary>
             public IRoomGen Room;
 
+            /// <summary>
+            /// Initializes a new instance of the <see cref="ListPathBranchExpansion"/> struct.
+            /// </summary>
+            /// <param name="from">The index of the room or hall to expand from.</param>
+            /// <param name="room">The new room to add.</param>
+            /// <param name="hall">The optional intermediate hall, or null for direct connection.</param>
             public ListPathBranchExpansion(RoomHallIndex from, IRoomGen room, IPermissiveRoomGen hall)
             {
                 this.From = from;

@@ -12,8 +12,8 @@ namespace RogueElements
     /// Spawns the objects in terminal (dead-end) rooms.
     /// Falls back on normal rooms if all dead-end rooms are taken.
     /// </summary>
-    /// <typeparam name="TGenContext"></typeparam>
-    /// <typeparam name="TSpawnable"></typeparam>
+    /// <typeparam name="TGenContext">The generation context type, which must support floor plans and placing spawnable entities.</typeparam>
+    /// <typeparam name="TSpawnable">The type of spawnable entity to place on the map.</typeparam>
     [Serializable]
     public class TerminalSpawnStep<TGenContext, TSpawnable> : RoomSpawnStep<TGenContext, TSpawnable>
         where TGenContext : class, IFloorPlanGenContext, IPlaceableGenContext<TSpawnable>
